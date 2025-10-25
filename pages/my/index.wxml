@@ -1,0 +1,248 @@
+<!--pages/my/index.wxml-->
+<view class="profile-page">
+  <!-- 头部用户信息区域 -->
+  <view class="profile-header">
+    <view class="header-background"></view>
+    <view class="header-content">
+      <!-- 用户头像和基本信息 -->
+      <view class="user-info-section">
+        <view class="avatar-container">
+          <image 
+            class="user-avatar" 
+            src="{{backendUserData.wechatAvatar || backendUserData.avatarUrl || '/images/header.png'}}"
+            wx:if="{{backendUserData}}"
+          ></image>
+          <image 
+            class="user-avatar" 
+            src="{{userInfo.avatarUrl || '/images/header.png'}}"
+            wx:else
+          ></image>
+          <view class="avatar-edit-btn" bindtap="editAvatar">
+            <text class="edit-icon">📷</text>
+          </view>
+        </view>
+        
+        <view class="user-basic-info">
+          <view class="user-name">
+            <text class="name-text">{{backendUserData.name || backendUserData.nickName || userInfo.nickName || '未设置'}}</text>
+            <view class="edit-name-btn" bindtap="editUserName">
+              <text class="edit-icon">✏️</text>
+            </view>
+          </view>
+          <view class="user-title">
+            <text class="title-text">{{backendUserData.school.name || '未设置学校'}}</text>
+          </view>
+          <view class="user-subtitle">
+            <text class="subtitle-text">{{backendUserData.community.name || '未设置社区'}}</text>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 用户统计信息 -->
+      <view class="user-stats" wx:if="{{backendUserData}}">
+        <view class="stat-item">
+          <text class="stat-value">{{backendUserData.id}}</text>
+          <text class="stat-label">用户ID</text>
+        </view>
+        <view class="stat-divider"></view>
+        <view class="stat-item">
+          <text class="stat-value">{{userGenderText}}</text>
+          <text class="stat-label">性别</text>
+        </view>
+        <view class="stat-divider"></view>
+        <view class="stat-item">
+          <text class="stat-value">{{userAge}}</text>
+          <text class="stat-label">年龄</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 主要内容区域 -->
+  <view class="main-content">
+    
+    <!-- 个人信息卡片 -->
+    <view class="info-card">
+      <view class="card-header">
+        <view class="header-left">
+          <text class="card-title">个人信息</text>
+        </view>
+        <view class="header-right">
+          <view class="edit-btn" bindtap="editPersonalInfo">
+            <text class="edit-text">编辑</text>
+          </view>
+        </view>
+      </view>
+      
+      <view class="info-list">
+        <view class="info-item">
+          <text class="info-label">姓名</text>
+          <text class="info-value">{{backendUserData.name || '未设置'}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">性别</text>
+          <text class="info-value">{{userGenderText}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">生日</text>
+          <text class="info-value">{{userBirthdayText}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">联系方式</text>
+          <text class="info-value">{{backendUserData.contactNumber || '未设置'}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">家长姓名</text>
+          <text class="info-value">{{backendUserData.parentsName || '未设置'}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 学校信息卡片 -->
+    <view class="info-card">
+      <view class="card-header">
+        <view class="header-left">
+          <text class="card-title">学校信息</text>
+        </view>
+        <view class="header-right">
+          <view class="edit-btn" bindtap="editSchoolInfo">
+            <text class="edit-text">编辑</text>
+          </view>
+        </view>
+      </view>
+      
+      <view class="info-list">
+        <view class="info-item">
+          <text class="info-label">学校名称</text>
+          <text class="info-value">{{backendUserData.school.name || '未设置'}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">注册学生数</text>
+          <text class="info-value">{{backendUserData.school.registeredStudentsCount || '0'}}人</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">地区</text>
+          <text class="info-value">{{backendUserData.school.distinct || '未设置'}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 社区信息卡片 -->
+    <view class="info-card">
+      <view class="card-header">
+        <view class="header-left">
+          <text class="card-title">社区信息</text>
+        </view>
+        <view class="header-right">
+          <view class="edit-btn" bindtap="editCommunityInfo">
+            <text class="edit-text">编辑</text>
+          </view>
+        </view>
+      </view>
+      
+      <view class="info-list">
+        <view class="info-item">
+          <text class="info-label">社区名称</text>
+          <text class="info-value">{{backendUserData.community.name || '未设置'}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">学生数量</text>
+          <text class="info-value">{{backendUserData.community.studentsCount || '0'}}人</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">地区</text>
+          <text class="info-value">{{backendUserData.community.distinct.name || '未设置'}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 系统信息卡片 -->
+    <view class="info-card">
+      <view class="card-header">
+        <view class="header-left">
+          <text class="card-title">系统信息</text>
+        </view>
+      </view>
+      
+      <view class="info-list">
+        <view class="info-item">
+          <text class="info-label">注册时间</text>
+          <text class="info-value">{{userRegisterDateText}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">最后更新</text>
+          <text class="info-value">{{userUpdateDateText}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">合同到期</text>
+          <text class="info-value">{{userContractEndDateText}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 功能按钮区域 -->
+    <view class="function-section">
+      <view class="function-btn" bindtap="go_view" data-viewInd="0">
+        <image class="btn-icon" src="/images/icon_equipment_msg.png"></image>
+        <view class="btn-content">
+          <text class="btn-title">答题记录</text>
+          <text class="btn-desc">查看历史答题记录</text>
+        </view>
+        <text class="btn-arrow">›</text>
+      </view>
+      
+      <view class="function-btn" bindtap="go_view" data-viewInd="2">
+        <image class="btn-icon" src="/images/icon_center_msg.png"></image>
+        <view class="btn-content">
+          <text class="btn-title">意见反馈</text>
+          <text class="btn-desc">提交建议和问题</text>
+        </view>
+        <text class="btn-arrow">›</text>
+      </view>
+      
+      <button class="function-btn share-btn" openType="share">
+        <image class="btn-icon" src="/images/icon_center_phone.png"></image>
+        <view class="btn-content">
+          <text class="btn-title">分享好友</text>
+          <text class="btn-desc">邀请好友一起学习</text>
+        </view>
+        <text class="btn-arrow">›</text>
+      </button>
+      
+      <view class="function-btn" bindtap="about">
+        <image class="btn-icon" src="/images/icon_center_tj.png"></image>
+        <view class="btn-content">
+          <text class="btn-title">关于我们</text>
+          <text class="btn-desc">了解更多信息</text>
+        </view>
+        <text class="btn-arrow">›</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 登录弹窗 -->
+  <view class="login-modal" wx:if="{{!is_login}}">
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">您还未登录</text>
+        <text class="modal-subtitle">请先登录再进行操作</text>
+      </view>
+      <view class="modal-image"></view>
+      <view class="modal-buttons">
+        <button class="modal-btn cancel-btn" bindtap='login'>暂不登录</button> 
+        <button 
+          wx:if="{{canIUseGetUserProfile}}"  
+          class="modal-btn confirm-btn" 
+          bindtap="getUserProfile"
+        >立即登录</button>
+        <button 
+          wx:else 
+          class="modal-btn confirm-btn" 
+          open-type="getUserInfo" 
+          bindgetuserinfo="bindgetuserinfo"
+        >立即登录</button> 
+      </view>
+    </view>
+    <view class="modal-mask"></view>
+  </view>
+</view>

@@ -1,0 +1,30 @@
+{
+  "pages": [
+    "pages/start/index",
+    "pages/index/index",
+    "pages/my/index",
+    "pages/my/edit-profile",
+    "pages/register/index",
+    "pages/status/index",
+    "pages/learn/index",
+    "pages/moniq/index",
+    "pages/category/index",
+    "pages/rank/index",
+    "pages/wrong/index",
+    "pages/exam/index",
+    "pages/answer/index",
+    "pages/feedback/index",
+    "pages/record/index",
+    "pages/dati/index",
+    "pages/examResult/index",
+    "pages/errorStar/index",
+    "pages/error/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1bd0ad",
+    "navigationBarTitleText": "数学日积月累",
+    "navigationBarTextStyle": "white"
+  },
+  "sitemapLocation": "sitemap.json"
+}

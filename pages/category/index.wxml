@@ -1,0 +1,80 @@
+<!--pages/category/index.wxml-->
+<view class="container">
+  <view class="category-list">
+    <view 
+      bindtap="goquestion" 
+      class="category-card {{item.status === 'completed' ? 'completed-card' : ''}}" 
+      wx:for="{{cateList}}" 
+      wx:key="id" 
+      data-cateid="{{item.id}}" 
+      data-menu="{{item.title}}">
+      
+      <!-- 卡片头部 -->
+      <view class="card-header">
+        <view class="header-left">
+          <view class="category-number">{{index + 1}}</view>
+          <view class="category-info">
+            <text class="category-title">{{item.title}}</text>
+            <text class="category-subtitle">共 {{item.stats.total}} 题</text>
+          </view>
+        </view>
+        <view class="header-right">
+          <!-- 状态徽章 -->
+          <view class="status-badge {{item.status}}">
+            <text wx:if="{{item.status === 'completed'}}">已通关</text>
+            <text wx:elif="{{item.status === 'in_progress'}}">进行中</text>
+            <text wx:else>未开始</text>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 进度条 -->
+      <view class="progress-section" wx:if="{{item.progress > 0}}">
+        <view class="progress-bar">
+          <view class="progress-fill" style="width: {{item.progress}}%"></view>
+        </view>
+        <text class="progress-text">{{item.progress}}%</text>
+      </view>
+      
+      <!-- 统计信息和星级 -->
+      <view class="card-footer">
+        <view class="stats-section">
+          <view class="stat-item" wx:if="{{item.stats.completed > 0}}">
+            <text class="stat-value">{{item.stats.completed}}/{{item.stats.total}}</text>
+            <text class="stat-label">已完成</text>
+          </view>
+          <view class="stat-item" wx:if="{{item.stats.accuracy > 0}}">
+            <text class="stat-value {{item.stats.accuracy >= 80 ? 'high-accuracy' : ''}}">{{item.stats.accuracy}}%</text>
+            <text class="stat-label">正确率</text>
+          </view>
+          <view class="stat-item" wx:if="{{item.stats.completed === 0}}">
+            <text class="stat-label-empty">开始学习吧！</text>
+          </view>
+        </view>
+        
+        <!-- 星级评价 -->
+        <view class="stars-section" wx:if="{{item.stars > 0}}">
+          <view class="stars">
+            <image 
+              class="star-icon {{star <= item.stars ? 'star-active' : 'star-inactive'}}" 
+              wx:for="{{[1,2,3,4,5]}}" 
+              wx:key="*this" 
+              wx:for-item="star"
+              src="/images/star-active.png">
+            </image>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 箭头指示器 -->
+      <view class="arrow-indicator">
+        <image class="arrow-icon" src="/images/jkt/right.png"></image>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{cateList.length === 0}}">
+    <text class="empty-text">暂无分类数据</text>
+  </view>
+</view>

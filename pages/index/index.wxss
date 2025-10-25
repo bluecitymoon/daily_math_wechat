@@ -1,0 +1,594 @@
+/**index.wxss**/
+page {
+  font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, 'Droid Sans Fallback', 'Microsoft Yahei', sans-serif;
+  width: 100%;
+  background-color: #f1f1f1;
+  min-height: 100vh;
+}
+
+.page {
+  padding-bottom: 40rpx;
+}
+
+/* 顶部栏 - 用户信息区域 */
+.top-bar {
+  position: relative;
+  height: 260rpx;
+  overflow: visible;
+}
+
+.top-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1bd0ad 0%, #17a589 100%);
+}
+
+.top-content {
+  position: relative;
+  height: 100%;
+  padding: 0rpx 32rpx 30rpx;
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  z-index: 2;
+}
+
+/* 用户头像区域 */
+.user-avatar-section {
+  flex-shrink: 0;
+}
+
+.user-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  border: 6rpx solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.15);
+}
+
+/* 用户基本信息区域 */
+.user-info-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+  min-width: 0;
+}
+
+.user-name-row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.user-nickname {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #ffffff;
+  line-height: 1.2;
+  max-width: 300rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-title {
+  padding: 6rpx 16rpx;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 20rpx;
+  backdrop-filter: blur(10rpx);
+}
+
+.title-text {
+  font-size: 22rpx;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.user-grade {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+}
+
+.grade-label {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.grade-value {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* 用户成就信息区域 */
+.user-achievement-section {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  padding: 20rpx 28rpx;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 16rpx;
+  backdrop-filter: blur(10rpx);
+  flex-shrink: 0;
+}
+
+.achievement-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6rpx;
+}
+
+.achievement-value {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.achievement-value.rank-value {
+  font-size: 32rpx;
+}
+
+.achievement-label {
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.achievement-divider {
+  width: 2rpx;
+  height: 48rpx;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* 主要内容区域 */
+.main-content {
+  padding: 0 24rpx;
+  margin-top: -50rpx;
+  position: relative;
+  z-index: 10;
+}
+
+/* 卡片通用样式 */
+.card-shadow {
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+/* 答题进度卡片 */
+.progress-card {
+  background: #ffffff;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-icon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 16rpx;
+}
+
+.header-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #2d3436;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.progress-percent {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #1bd0ad;
+}
+
+.progress-bar-container {
+  margin-bottom: 32rpx;
+}
+
+.progress-bar {
+  height: 16rpx;
+  background: #f0f3f7;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1bd0ad 0%, #17a589 100%);
+  border-radius: 16rpx;
+  transition: width 0.5s ease;
+}
+
+.progress-stats {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 24rpx 0;
+  margin-bottom: 24rpx;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.stat-value {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #2d3436;
+  margin-bottom: 8rpx;
+}
+
+.stat-value.highlight {
+  color: #ff6b6b;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: #636e72;
+}
+
+.stat-divider {
+  width: 2rpx;
+  height: 60rpx;
+  background: #e9ecef;
+}
+
+.start-button {
+  background: linear-gradient(135deg, #1bd0ad 0%, #17a589 100%);
+  height: 96rpx;
+  border-radius: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 32rpx;
+  font-weight: 600;
+  box-shadow: 0 8rpx 20rpx rgba(27, 208, 173, 0.3);
+}
+
+.button-arrow {
+  margin-left: 12rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.start-button:active {
+  opacity: 0.9;
+  transform: scale(0.98);
+}
+
+/* 排名卡片 */
+.rank-card {
+  background: #ffffff;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+}
+
+.view-more {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  color: #1bd0ad;
+}
+
+.view-more .arrow {
+  font-size: 32rpx;
+  margin-left: 4rpx;
+}
+
+.rank-content {
+  margin-top: 24rpx;
+}
+
+.current-rank {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 16rpx;
+  margin-bottom: 20rpx;
+}
+
+.rank-number-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 32rpx;
+  border-right: 2rpx solid #dee2e6;
+}
+
+.rank-label {
+  font-size: 24rpx;
+  color: #636e72;
+  margin-bottom: 8rpx;
+}
+
+.rank-number {
+  font-size: 64rpx;
+  font-weight: bold;
+  color: #1bd0ad;
+  line-height: 1;
+}
+
+.rank-info {
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  padding-left: 32rpx;
+}
+
+.rank-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rank-item-label {
+  font-size: 24rpx;
+  color: #636e72;
+  margin-bottom: 8rpx;
+}
+
+.rank-item-value {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #2d3436;
+}
+
+.rank-item-value.success {
+  color: #00b894;
+}
+
+.surpass-tip {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 24rpx;
+  background: #fff3cd;
+  border-radius: 12rpx;
+  border-left: 6rpx solid #feca57;
+}
+
+.tip-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 16rpx;
+}
+
+.tip-text {
+  font-size: 26rpx;
+  color: #856404;
+  flex: 1;
+  line-height: 1.5;
+}
+
+.highlight-num {
+  color: #ff6b6b;
+  font-weight: bold;
+  font-size: 32rpx;
+}
+
+.rank-excellent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20rpx;
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  border-radius: 12rpx;
+  color: #155724;
+  font-size: 26rpx;
+}
+
+.excellent-icon {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 12rpx;
+}
+
+/* 功能按钮区域 */
+.function-buttons {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 24rpx;
+}
+
+.function-btn {
+  flex: 1;
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  display: flex;
+  align-items: center;
+}
+
+.function-btn:active {
+  opacity: 0.8;
+}
+
+.btn-icon {
+  width: 56rpx;
+  height: 56rpx;
+  margin-right: 16rpx;
+}
+
+.btn-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #2d3436;
+  margin-bottom: 6rpx;
+}
+
+.btn-desc {
+  font-size: 22rpx;
+  color: #636e72;
+}
+
+.btn-arrow {
+  font-size: 32rpx;
+  color: #b2bec3;
+}
+
+/* 今日数据卡片 */
+.today-card {
+  background: #ffffff;
+  border-radius: 24rpx;
+  padding: 32rpx;
+}
+
+.today-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.today-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #2d3436;
+}
+
+.today-date {
+  font-size: 24rpx;
+  color: #636e72;
+}
+
+.today-stats {
+  display: flex;
+  justify-content: space-around;
+}
+
+.today-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx;
+  background: #f8f9fa;
+  border-radius: 12rpx;
+  flex: 1;
+  margin: 0 8rpx;
+}
+
+.today-value {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #1bd0ad;
+  margin-bottom: 8rpx;
+}
+
+.today-label {
+  font-size: 24rpx;
+  color: #636e72;
+}
+
+/* 登录弹窗 */
+button::after {
+  border: none;
+}
+
+input {
+  outline: none;
+  border: none;
+  list-style: none;
+}
+
+.warrant .white {
+  width: 540rpx;
+  height: 580rpx;
+  background-color: #fff;
+  border-radius: 15rpx;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-left: -270rpx;
+  margin-top: -290rpx;
+  z-index: 1000;
+}
+
+.warrant .white .pictrue {
+  background-image: url("https://bmob-cdn-24322.bmobcloud.com/2019/07/25/f6e77de940d2441180ade9cacb7daf13.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 400rpx;
+  height: 270rpx;
+  margin: 10rpx auto 0 auto;
+}
+
+.warrant .white .tip {
+  font-size: 30rpx;
+  color: #8a8a8a;
+  text-align: center;
+  margin-top: 20rpx;
+  padding: 0 30rpx;
+}
+
+.warrant .white .tap {
+  text-align: center;
+  margin-top: 20rpx;
+  font-size: 34rpx;
+  font-weight: 600;
+}
+
+.warrant .white button {
+  width: 200rpx;
+  height: 75rpx;
+  line-height: 75rpx;
+  font-size: 30rpx;
+  border-radius: 50rpx;
+  margin-top: 70rpx;
+}
+
+.warrant .white .no {
+  background-color: #fff;
+  color: #1bd0ad;
+  border: 1rpx solid #1bd0ad;
+}
+
+.warrant .white .but {
+  background-color: #1bd0ad;
+  color: #fff;
+}
+
+.warrant .white .but::after {
+  border: none;
+}
+
+.warrant .white .but:active {
+  background-color: #17a589;
+}
+
+.warrant .mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+}

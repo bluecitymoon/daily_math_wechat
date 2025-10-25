@@ -1,0 +1,190 @@
+<!--index.wxml-->
+<view class='page'>
+  <!-- 顶部栏 - 用户信息区域 -->
+  <view class='top-bar'>
+    <view class="top-bg"></view>
+    <view class="top-content" bindtap="handleUserClick">
+      <!-- 用户头像 -->
+      <view class="user-avatar-section">
+        <image class='user-avatar' src='{{userInfo.avatarUrl}}' wx:if="{{userInfo.avatarUrl}}"></image>
+        <image class='user-avatar' src='/images/header.png' wx:else></image>
+      </view>
+      
+      <!-- 用户基本信息 -->
+      <view class="user-info-section">
+        <view class="user-name-row">
+          <text class="user-nickname">{{userInfo.nickName || '游客'}}</text>
+          <view class="user-title" wx:if="{{mockUserData.title}}">
+            <text class="title-text">{{mockUserData.title}}</text>
+          </view>
+        </view>
+        <view class="user-grade">
+          <text class="grade-label">年级：</text>
+          <text class="grade-value">{{mockUserData.grade}}</text>
+        </view>
+      </view>
+      
+      <!-- 用户成就信息 -->
+      <view class="user-achievement-section">
+        <view class="achievement-item">
+          <text class="achievement-value">{{mockUserData.totalScore}}</text>
+          <text class="achievement-label">总积分</text>
+        </view>
+        <view class="achievement-divider"></view>
+        <view class="achievement-item">
+          <text class="achievement-value rank-value">No.{{mockUserData.totalRank}}</text>
+          <text class="achievement-label">总排名</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 主要内容区域 -->
+  <view class="main-content">
+    
+    <!-- 答题进度卡片 -->
+    <view class="progress-card card-shadow">
+      <view class="card-header">
+        <view class="header-left">
+          <image class="header-icon" src="/images/icon_monikaoshi@3x.png"></image>
+          <text class="header-title">学习进度</text>
+        </view>
+        <view class="header-right">
+          <text class="progress-percent">{{mockData.progress}}%</text>
+        </view>
+      </view>
+      
+      <view class="progress-bar-container">
+        <view class="progress-bar">
+          <view class="progress-fill" style="width: {{mockData.progress}}%"></view>
+        </view>
+      </view>
+      
+      <view class="progress-stats">
+        <view class="stat-item">
+          <text class="stat-value">{{mockData.completedQuestions}}</text>
+          <text class="stat-label">已完成</text>
+        </view>
+        <view class="stat-divider"></view>
+        <view class="stat-item">
+          <text class="stat-value highlight">{{mockData.pendingQuestions}}</text>
+          <text class="stat-label">待完成</text>
+        </view>
+        <view class="stat-divider"></view>
+        <view class="stat-item">
+          <text class="stat-value">{{mockData.totalQuestions}}</text>
+          <text class="stat-label">总题数</text>
+        </view>
+      </view>
+      
+      <!-- 开始答题按钮 -->
+      <view class="start-button" bindtap='goExam'>
+        <text>开始答题</text>
+        <text class="button-arrow">→</text>
+      </view>
+    </view>
+
+    <!-- 排名信息卡片 -->
+    <view class="rank-card card-shadow">
+      <view class="card-header">
+        <view class="header-left">
+          <image class="header-icon" src="/images/icon_monichnegji@3x.png"></image>
+          <text class="header-title">我的排名</text>
+        </view>
+        <navigator url="/pages/category/index?action=rank" class="view-more">
+          <text>查看榜单</text>
+          <text class="arrow">›</text>
+        </navigator>
+      </view>
+      
+      <view class="rank-content">
+        <view class="current-rank">
+          <view class="rank-number-box">
+            <text class="rank-label">当前排名</text>
+            <text class="rank-number">{{mockData.currentRank}}</text>
+          </view>
+          <view class="rank-info">
+            <view class="rank-item">
+              <text class="rank-item-label">正确率</text>
+              <text class="rank-item-value success">{{mockData.accuracy}}%</text>
+            </view>
+            <view class="rank-item">
+              <text class="rank-item-label">总得分</text>
+              <text class="rank-item-value">{{mockData.totalScore}}</text>
+            </view>
+          </view>
+        </view>
+        
+        <!-- 超越提示 -->
+        <view class="surpass-tip" wx:if="{{mockData.questionsToSurpass > 0}}">
+          <image class="tip-icon" src="/images/jkt/rank-01.png"></image>
+          <text class="tip-text">再答对 <text class="highlight-num">{{mockData.questionsToSurpass}}</text> 题即可超越排名第 {{mockData.nextRank}} 位</text>
+        </view>
+        
+        <view class="rank-excellent" wx:if="{{mockData.currentRank <= 3}}">
+          <image class="excellent-icon" src="/images/jkt/success.png"></image>
+          <text>您已进入前三名！继续加油！</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 功能按钮区域 -->
+    <view class="function-buttons">
+      <navigator url="/pages/wrong/index" class="function-btn card-shadow">
+        <image class="btn-icon" src="/images/icon_cuotishoucang@3x.png"></image>
+        <view class="btn-content">
+          <text class="btn-title">错题集</text>
+          <text class="btn-desc">{{mockData.wrongQuestions}}题</text>
+        </view>
+        <text class="btn-arrow">›</text>
+      </navigator>
+      
+      <navigator url="/pages/category/index?action=exam" class="function-btn card-shadow">
+        <image class="btn-icon" src="/images/icon_zhangjielianxi@3x.png"></image>
+        <view class="btn-content">
+          <text class="btn-title">章节练习</text>
+          <text class="btn-desc">分类学习</text>
+        </view>
+        <text class="btn-arrow">›</text>
+      </navigator>
+    </view>
+
+    <!-- 今日数据卡片 -->
+    <view class="today-card card-shadow">
+      <view class="today-header">
+        <text class="today-title">今日数据</text>
+        <text class="today-date">{{todayDate}}</text>
+      </view>
+      <view class="today-stats">
+        <view class="today-item">
+          <text class="today-value">{{mockData.todayAnswered}}</text>
+          <text class="today-label">今日答题</text>
+        </view>
+        <view class="today-item">
+          <text class="today-value">{{mockData.todayCorrect}}</text>
+          <text class="today-label">今日正确</text>
+        </view>
+        <view class="today-item">
+          <text class="today-value">{{mockData.continuousDays}}</text>
+          <text class="today-label">连续天数</text>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- 登录弹窗 -->
+  <view class="warrant" wx:if="{{!is_login}}">
+    <view class='white'>
+      <view class='tap'>您还未登录</view>
+      <view class='tip'>请先登录再进行操作</view>
+      <view class='pictrue'></view>
+      <view style='display:flex;'>
+        <button class='no' type="primary" bindtap='login' lang="zh_CN">暂不登录</button> 
+        <button wx:if="{{canIUseGetUserProfile}}" class='but' bindtap="getUserProfile">立即登录</button>
+        <button wx:else class='but' type="primary" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindgetuserinfo">立即登录</button> 
+      </view>
+    </view>
+    <view class='mask'></view>
+  </view>
+</view>

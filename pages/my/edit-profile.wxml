@@ -1,0 +1,161 @@
+<!--pages/my/edit-profile.wxml-->
+<view class="edit-profile-page">
+  <view class="page-header">
+    <view class="header-left" bindtap="cancelEdit">
+      <text class="back-btn">‹</text>
+    </view>
+    <view class="header-center">
+      <text class="page-title">
+        {{editMode === 'personal' ? '编辑个人信息' : editMode === 'school' ? '编辑学校信息' : '编辑社区信息'}}
+      </text>
+    </view>
+    <view class="header-right" bindtap="saveChanges">
+      <text class="save-btn">保存</text>
+    </view>
+  </view>
+
+  <view class="form-container">
+    
+    <!-- 个人信息编辑 -->
+    <view wx:if="{{editMode === 'personal'}}" class="form-section">
+      
+      <view class="form-group">
+        <text class="form-label">姓名</text>
+        <input 
+          class="form-input" 
+          type="text" 
+          placeholder="请输入姓名"
+          value="{{formData.name}}"
+          data-field="name"
+          bindinput="onInputChange"
+        />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">性别</text>
+        <picker 
+          mode="selector" 
+          range="{{['男', '女']}}"
+          value="{{formData.gender === '男' ? 0 : 1}}"
+          bindchange="onGenderChange"
+        >
+          <view class="picker-input">
+            <text class="picker-text">{{formData.gender || '请选择性别'}}</text>
+            <text class="picker-arrow">›</text>
+          </view>
+        </picker>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">生日</text>
+        <picker 
+          mode="date" 
+          value="{{formData.birthday ? formData.birthday.split('T')[0] : ''}}"
+          bindchange="onBirthdayChange"
+        >
+          <view class="picker-input">
+            <text class="picker-text">{{formData.birthday ? formData.birthday.split('T')[0] : '请选择生日'}}</text>
+            <text class="picker-arrow">›</text>
+          </view>
+        </picker>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">联系方式</text>
+        <input 
+          class="form-input" 
+          type="text" 
+          placeholder="请输入联系方式"
+          value="{{formData.contactNumber}}"
+          data-field="contactNumber"
+          bindinput="onInputChange"
+        />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">家长姓名</text>
+        <input 
+          class="form-input" 
+          type="text" 
+          placeholder="请输入家长姓名"
+          value="{{formData.parentsName}}"
+          data-field="parentsName"
+          bindinput="onInputChange"
+        />
+      </view>
+
+    </view>
+
+    <!-- 学校信息编辑 -->
+    <view wx:if="{{editMode === 'school'}}" class="form-section">
+      
+      <view class="form-group">
+        <text class="form-label">学校名称</text>
+        <input 
+          class="form-input" 
+          type="text" 
+          placeholder="请输入学校名称"
+          value="{{formData.school.name}}"
+          data-field="school.name"
+          bindinput="onInputChange"
+        />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">地区</text>
+        <input 
+          class="form-input" 
+          type="text" 
+          placeholder="请输入地区"
+          value="{{formData.school.distinct}}"
+          data-field="school.distinct"
+          bindinput="onInputChange"
+        />
+      </view>
+
+    </view>
+
+    <!-- 社区信息编辑 -->
+    <view wx:if="{{editMode === 'community'}}" class="form-section">
+      
+      <view class="form-group">
+        <text class="form-label">社区名称</text>
+        <input 
+          class="form-input" 
+          type="text" 
+          placeholder="请输入社区名称"
+          value="{{formData.community.name}}"
+          data-field="community.name"
+          bindinput="onInputChange"
+        />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">地区</text>
+        <input 
+          class="form-input" 
+          type="text" 
+          placeholder="请输入地区"
+          value="{{formData.community.distinct.name}}"
+          data-field="community.distinct.name"
+          bindinput="onInputChange"
+        />
+      </view>
+
+    </view>
+
+  </view>
+
+  <!-- 保存按钮 -->
+  <view class="save-section">
+    <button 
+      class="save-button {{loading ? 'loading' : ''}}" 
+      bindtap="saveChanges"
+      disabled="{{loading}}"
+    >
+      <text wx:if="{{!loading}}">保存修改</text>
+      <text wx:else>保存中...</text>
+    </button>
+  </view>
+
+</view>
