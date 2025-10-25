@@ -169,6 +169,19 @@ function del(url, data = {}, options = {}) {
 }
 
 /**
+ * 检查学生答题记录
+ * @param {number} questionId - 题目ID
+ * @returns {Promise} 返回答题记录信息
+ */
+function checkStudentAnswerLog(questionId) {
+  return request({
+    url: `/api/student-answer-logs/by-question/${questionId}`,
+    method: 'GET',
+    showLoading: false
+  });
+}
+
+/**
  * 上传文件
  */
 function uploadFile(filePath, options = {}) {
@@ -232,6 +245,7 @@ module.exports = {
   post,
   put,
   del,
-  uploadFile
+  uploadFile,
+  checkStudentAnswerLog
 };
 
